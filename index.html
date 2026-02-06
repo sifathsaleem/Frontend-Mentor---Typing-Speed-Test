@@ -36,7 +36,7 @@
       </div>
     </header>
 
-    <main class="relative flex-1">
+    <main class="relative flex-1 flex flex-col">
       <!-- nav section -->
       <div class="container mx-auto">
         <div class="nav-wrapper border-b border-neutral-400/50 pb-3 px-4">
@@ -60,7 +60,7 @@
             <!-- 1.2 -->
 
             <!-- Mobile Version -->
-            <div class=" mobile-nav text-gray-50 flex lg:hidden font-light gap-3">
+            <div class="mobile-nav text-gray-50 flex lg:hidden font-light gap-3">
               <div class="relative flex-1">
                 <button
                   class="border border-neutral-400 py-1 px-5 rounded-lg bg-neutral-900 inline-flex gap-3 items-center justify-center w-full cursor-pointer hover:bg-neutral-800"
@@ -69,9 +69,9 @@
                   <span>Hard</span>
                   <img src="./assets/images/icon-down-arrow.svg" class="-rotate-90 transition-all" alt="" />
                 </button>
-                <div class="drop-down flex w-full flex-col bg-neutral-800 rounded-lg absolute top-10 hidden z-10" id="difficulty-dd">
+                <div class="drop-down flex w-full flex-col bg-neutral-800 rounded-lg absolute top-10 hidden z-20" id="difficulty-dd">
                   <label for="easy" class="flex items-center gap-3 border-b border-gray-50/50 py-1 px-3 cursor-pointer bg-neutral-800">
-                    <input type="radio" id="easy" value="Easy" name="difficulty" class="sr-only peer" checked  />
+                    <input type="radio" id="easy" value="Easy" name="difficulty" class="sr-only peer" checked />
                     <div class="w-4 h-4 rounded-full border-1 border-gray-50 peer-checked:border-[5px] peer-checked:border-blue-400 transition-all"></div>
                     <span class="select-none">Easy</span>
                   </label>
@@ -83,7 +83,7 @@
                   </label>
 
                   <label for="hard" class="flex items-center gap-3 py-1 px-3 cursor-pointer">
-                    <input type="radio" id="hard" value="Hard" name="difficulty" class="sr-only peer" checked />
+                    <input type="radio" id="hard" value="Hard" name="difficulty" class="sr-only peer" />
                     <div class="w-4 h-4 rounded-full border-1 border-gray-50 peer-checked:border-[5px] peer-checked:border-blue-400 transition-all"></div>
                     <span class="select-none">Hard</span>
                   </label>
@@ -95,7 +95,7 @@
                   <span>Timed</span>
                   <img src="./assets/images/icon-down-arrow.svg" id="arrow-icon" class="-rotate-90 transition-all" alt="" />
                 </button>
-                <div class="drop-down flex w-full flex-col bg-neutral-800 rounded-lg absolute top-10 hidden z-10" id="mode-dd">
+                <div class="drop-down flex w-full flex-col bg-neutral-800 rounded-lg absolute top-10 hidden z-20" id="mode-dd">
                   <label for="timed" class="flex items-center gap-2 border-b border-gray-50/50 py-1 px-3 cursor-pointer">
                     <input type="radio" id="timed" value="Timed" name="mode" class="sr-only peer" checked />
                     <div class="w-4 h-4 rounded-full border-1 border-gray-50 peer-checked:border-[5px] peer-checked:border-blue-400 transition-all"></div>
@@ -116,31 +116,27 @@
               <div class="flex items-center gap-3" id="desk-difficulty-nav">
                 <span class="text-neutral-400">Difficulty:</span>
                 <div class="space-x-1" id="desk">
-                  <label for="des-easy" class="text-gray-50 border border-gray-50 rounded-lg py-1 px-2 hover:text-gray-50 hover:border-gray-50 cursor-pointer transition-colors">
-                    <input type="radio" id="des-easy" value="Easy" name="des-difficulty" class="sr-only peer" />
-                    <span>Easy</span>
+                  <label for="easy" data-value="Easy" class="text-gray-50 border border-gray-50 rounded-lg py-1 px-2 hover:text-gray-50 hover:border-gray-50 cursor-pointer transition-all">
+                    Easy
                   </label>
-                  <label for="des-medium" class="text-blue-400 border border-blue-400 rounded-lg py-1 px-2 hover:text-gray-50 hover:border-gray-50 cursor-pointer transition-colors">
-                    <input type="radio" id="des-medium" value="Medium" name="des-difficulty" class="sr-only peer" />
-                    <span>Medium</span>
+                  <label for="medium" data-value="Medium" class="text-blue-400 border border-blue-400 rounded-lg py-1 px-2 hover:text-gray-50 hover:border-gray-50 cursor-pointer transition-all">
+                    Medium
                   </label>
-                  <label for="des-hard" class="text-blue-400 border border-blue-400 rounded-lg py-1 px-2 hover:text-gray-50 hover:border-gray-50 cursor-pointer transition-colors" value="Hard">
-                    <input type="radio" id="des-hard" value="Hard" name="des-difficulty" class="sr-only peer" />
-                    <span>Hard</span>
+                  <label
+                    for="hard"
+                    data-value="Hard"
+                    class="text-blue-400 border border-blue-400 rounded-lg py-1 px-2 hover:text-gray-50 hover:border-gray-50 cursor-pointer transition-all"
+                    value="Hard"
+                  >
+                    Hard
                   </label>
                 </div>
               </div>
               <div class="flex items-center gap-3" id="desk-mode-nav">
                 <span class="text-neutral-400">Mode:</span>
-                <div class="space-x-1"  id="desk">
-                  <label for="des-timed" class="text-gray-50 border border-gray-50 rounded-lg py-1 px-2 hover:text-gray-50 hover:border-gray-50 cursor-pointer">
-                    <input type="radio" id="des-timed" value="Timed" name="des-mode" class="sr-only peer" />
-                    <span>Timed (60s)</span>
-                  </label>
-                  <label for="des-passage" class="text-blue-400 border border-blue-400 rounded-lg py-1 px-2 hover:text-gray-50 hover:border-gray-50 cursor-pointer">
-                    <input type="radio" id="des-passage" value="Passage" name="des-mode" class="sr-only peer" />
-                    <span>Passage</span>
-                  </label>
+                <div class="space-x-1" id="desk">
+                  <label for="timed" data-value="Timed" class="text-gray-50 border border-gray-50 rounded-lg py-1 px-2 hover:text-gray-50 hover:border-gray-50 cursor-pointer"> Timed (60s) </label>
+                  <label for="passage" data-value="Passage" class="text-blue-400 border border-blue-400 rounded-lg py-1 px-2 hover:text-gray-50 hover:border-gray-50 cursor-pointer"> Passage </label>
                 </div>
               </div>
             </div>
@@ -149,12 +145,13 @@
       </div>
 
       <!-- Input section -->
-      <div class="container mx-auto px-4 mt-10">
+      <div class="container relative flex-1 mx-auto px-4 mt-10">
+        <div class="blur-overlay absolute top-auto w-full h-full left-0 text-neutral-50 z-10">
+          <button class=" relative left-1/2 top-40 -translate-x-1/2 hover:bg-blue-400 bg-blue-500 py-3 px-4 rounded-lg cursor-pointer" id="start-btn">Start Typing Test</button>
+        </div>
+
         <div class="input-wrapper relative">
-          <div contenteditable="true" id="input-field" class="lg:text-4xl text-2xl outline-none leading-normal blur-sm"></div>
-          <div class="blur-overlay w-full h-full absolute top-0 left-0 flex flex-col text-neutral-50 items-center justify-center">
-            <button class="bg-blue-600 hover:bg-blue-400 py-3 px-4 rounded-lg cursor-pointer" id="start-btn">Start Typing Test</button>
-          </div>
+          <div id="input-field" contenteditable="true" class="caret-transparent md:text-4xl text-neutral-400 text-2xl outline-none leading-normal blur-sm"></div>
         </div>
       </div>
 

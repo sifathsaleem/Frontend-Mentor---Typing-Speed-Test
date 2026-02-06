@@ -125,7 +125,7 @@ function startGame() {
   state.currentPosition = 0;
   state.correctChars = 0;
   state.incorrectChars = 0;
-  state.elapsedTime = 0;
+  state.elapsedTime = 60;
 
   startTimer();
   console.log("Game started!");

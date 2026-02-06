@@ -39,6 +39,46 @@
     {
       "id": "easy-10",
       "text": "The music played softly in the room. She closed her eyes and let the sounds wash over her. It was a simple song but it made her feel at peace."
+    },
+    {
+      "id": "easy-11",
+      "text": "The little boy laughed as he ran through the grass. His shoes were muddy and his hair was messy. He did not care because he was having too much fun to worry about it."
+    },
+    {
+      "id": "easy-12",
+      "text": "Every morning I wake up at seven. I brush my teeth and get dressed for work. Then I make a quick breakfast and head out the door to catch the bus."
+    },
+    {
+      "id": "easy-13",
+      "text": "The park was full of children playing. Some were on the swings while others climbed on the jungle gym. Parents sat on benches nearby watching them with smiles on their faces."
+    },
+    {
+      "id": "easy-14",
+      "text": "She loved to draw pictures of animals. Her room was covered with her artwork. Each drawing showed how much time and care she put into making them look real."
+    },
+    {
+      "id": "easy-15",
+      "text": "The old bridge crossed over a small river. People used it every day to get to the other side of town. At night it was lit up with pretty lights that reflected in the water below."
+    },
+    {
+      "id": "easy-16",
+      "text": "Winter came and brought snow with it. The children were excited to build snowmen and have snowball fights. School was closed for the day so they could play outside all morning."
+    },
+    {
+      "id": "easy-17",
+      "text": "He picked fresh vegetables from his garden. Tomatoes, carrots, and lettuce grew in neat rows. It made him happy to grow his own food and share it with neighbors."
+    },
+    {
+      "id": "easy-18",
+      "text": "The bakery opened early each day. The smell of fresh bread filled the street. People lined up to buy warm rolls and sweet pastries for their breakfast tables."
+    },
+    {
+      "id": "easy-19",
+      "text": "She sat by the lake and watched the ducks swim. The water was calm and the sky was clear. It was her favorite spot to come when she needed some quiet time alone."
+    },
+    {
+      "id": "easy-20",
+      "text": "The fire crackled in the fireplace. Everyone gathered around to stay warm. They told stories and drank hot chocolate as the snow fell softly outside the windows."
     }
   ],
   "medium": [
@@ -81,48 +121,128 @@
     {
       "id": "medium-10",
       "text": "Night markets come alive after sunset in cities across Asia. Vendors set up stalls selling everything from grilled skewers to handmade crafts. The air fills with enticing aromas and the buzz of conversation. Locals and tourists alike wander through, sampling street food and hunting for bargains."
+    },
+    {
+      "id": "medium-11",
+      "text": "The mountain trail wound through dense forest before opening onto breathtaking vistas. Hikers paused frequently to catch their breath and take photos. Despite the challenging climb, everyone agreed the panoramic views from the summit made every difficult step worthwhile."
+    },
+    {
+      "id": "medium-12",
+      "text": "Podcasting has democratized media in unprecedented ways. Anyone with a microphone and an internet connection can share their voice with the world. This accessibility has spawned countless niche shows covering topics from true crime to philosophy, creating communities around shared interests."
+    },
+    {
+      "id": "medium-13",
+      "text": "The museum's new exhibit challenged visitors to reconsider their assumptions about ancient civilizations. Interactive displays revealed sophisticated engineering, advanced mathematics, and complex social structures. Curators hoped to dispel myths about primitive societies and highlight human ingenuity across millennia."
+    },
+    {
+      "id": "medium-14",
+      "text": "Marathon training requires more than physical endurance. Runners must develop mental resilience to push through pain and fatigue. Nutrition, sleep, and recovery become as important as the miles logged. Many find that crossing the finish line transforms their understanding of personal limits."
+    },
+    {
+      "id": "medium-15",
+      "text": "The coral reef ecosystem supports an astonishing diversity of marine life. Tiny polyps build massive structures that shelter fish, crustaceans, and countless other species. Scientists warn that rising ocean temperatures threaten these fragile environments, making conservation efforts more critical than ever."
+    },
+    {
+      "id": "medium-16",
+      "text": "Street art has evolved from vandalism to recognized cultural expression. Cities now commission murals from talented artists, transforming blank walls into vibrant canvases. These public artworks spark conversations about beauty, politics, and community identity in shared urban spaces."
+    },
+    {
+      "id": "medium-17",
+      "text": "The violinist practiced six hours daily for decades before achieving mastery. Her dedication exemplified the ten-thousand-hour rule, though she insisted passion mattered more than mere repetition. Young students visited her studio hoping to absorb some wisdom about discipline and artistic excellence."
+    },
+    {
+      "id": "medium-18",
+      "text": "Beekeeping requires patience, observation, and respect for nature's rhythms. Beekeepers must understand hive dynamics, recognize signs of disease, and work carefully to avoid stressing the colony. In return, bees pollinate crops and produce honey, wax, and propolis with remarkable efficiency."
+    },
+    {
+      "id": "medium-19",
+      "text": "The pottery studio offered beginners a chance to work with clay. Students quickly learned that centering the clay on the wheel was deceptively difficult. Many found the tactile, meditative process addictive, returning week after week to refine their technique and create functional art."
+    },
+    {
+      "id": "medium-20",
+      "text": "Migration patterns reveal how animals respond to seasonal changes and environmental pressures. Monarch butterflies travel thousands of miles to specific groves in Mexico. Arctic terns fly from pole to pole annually. These journeys showcase nature's endurance and navigational precision."
     }
   ],
   "hard": [
     {
       "id": "hard-1",
-      "text": "The philosopher's argument hinged on a seemingly paradoxical assertion: that absolute freedom, pursued without constraint, inevitably undermines itself. \"Consider,\" she wrote, \"how the libertarian ideal—when taken to its logical extreme—produces conditions in which the powerful dominate the weak, thereby eliminating freedom for the majority.\" Her critics dismissed this as sophistry; her supporters hailed it as profound."
+      "text": "The philosopher's argument hinged on a seemingly paradoxical assertion: that absolute freedom, pursued without constraint, inevitably undermines itself. Consider how the libertarian ideal, when taken to its logical extreme, produces conditions in which the powerful dominate the weak, thereby eliminating freedom for the majority. Her critics dismissed this as sophistry; her supporters hailed it as profound."
     },
     {
       "id": "hard-2",
-      "text": "Quantum entanglement—Einstein's \"spooky action at a distance\"—continues to perplex physicists and philosophers alike. When two particles become entangled, measuring one instantaneously affects the other, regardless of the distance separating them. This phenomenon doesn't violate relativity (no information travels faster than light), yet it challenges our intuitions about locality, causality, and the nature of reality itself."
+      "text": "Quantum entanglement (Einstein's \"spooky action at a distance\") continues to perplex physicists and philosophers alike. When two particles become entangled, measuring one instantaneously affects the other, regardless of the distance separating them. This phenomenon doesn't violate relativity, yet it challenges our intuitions about locality, causality, and the nature of reality itself."
     },
     {
       "id": "hard-3",
-      "text": "The Renaissance polymath's correspondence reveals a mind of extraordinary breadth: in a single week's letters, he discussed astronomical observations, critiqued a colleague's architectural drawings, proposed improvements to the city's sewage system, and composed a sonnet for a patron's daughter. \"Specialization,\" he remarked wryly, \"is for insects.\" His contemporaries found him exhausting; posterity finds him inspirational."
+      "text": "The Renaissance polymath's correspondence reveals a mind of extraordinary breadth: in a single week's letters, he discussed astronomical observations, critiqued a colleague's architectural drawings, proposed improvements to the city's sewage system, and composed a sonnet for a patron's daughter. Specialization, he remarked wryly, is for insects. His contemporaries found him exhausting; posterity finds him inspirational."
     },
     {
       "id": "hard-4",
-      "text": "Algorithmic trading has fundamentally restructured financial markets. High-frequency systems execute thousands of transactions per second, exploiting minute price discrepancies across exchanges. Critics argue this creates systemic fragility—the 2010 \"Flash Crash\" saw the Dow Jones plummet 1,000 points in minutes before recovering. Proponents counter that algorithms provide liquidity and reduce spreads, ultimately benefiting retail investors."
+      "text": "Algorithmic trading has fundamentally restructured financial markets. High-frequency systems execute thousands of transactions per second, exploiting minute price discrepancies across exchanges. Critics argue this creates systemic fragility (the 2010 Flash Crash saw the Dow Jones plummet 1,000 points in minutes before recovering). Proponents counter that algorithms provide liquidity and reduce spreads, ultimately benefiting retail investors."
     },
     {
       "id": "hard-5",
-      "text": "The biographer faced an ethical dilemma: her subject's private journals—recently discovered in an attic—contained revelations that would overturn his carefully cultivated public image. Should she publish them? \"Biography,\" she mused, \"exists in tension between truth-telling and respect for the dead.\" After months of deliberation, she chose disclosure, reasoning that sanitized history serves no one."
+      "text": "The biographer faced an ethical dilemma: her subject's private journals (recently discovered in an attic) contained revelations that would overturn his carefully cultivated public image. Should she publish them? Biography exists in tension between truth-telling and respect for the dead. After months of deliberation, she chose disclosure, reasoning that sanitized history serves no one."
     },
     {
       "id": "hard-6",
-      "text": "Microplastics have infiltrated virtually every ecosystem on Earth, from the Mariana Trench to Arctic ice cores. These polymer fragments—smaller than 5mm in diameter—originate from degrading consumer products, synthetic textiles, and industrial processes. Researchers have detected them in human blood, placental tissue, and breast milk; their long-term health implications remain disturbingly unclear. The ubiquity of plastic pollution represents an unprecedented experiment on planetary biology."
+      "text": "Microplastics have infiltrated virtually every ecosystem on Earth, from the Mariana Trench to Arctic ice cores. These polymer fragments (smaller than 5mm in diameter) originate from degrading consumer products, synthetic textiles, and industrial processes. Researchers have detected them in human blood, placental tissue, and breast milk; their long-term health implications remain disturbingly unclear."
     },
     {
       "id": "hard-7",
-      "text": "The conductor's interpretation of Mahler's Ninth Symphony emphasized its prophetic qualities—the premonition of catastrophe, the aching nostalgia for a world about to vanish. \"Mahler composed this knowing he was dying,\" she explained in the program notes, \"but he also intuited, somehow, that European civilization itself stood at the precipice.\" The orchestra's performance—hushed, trembling, transcendent—left the audience in stunned silence."
+      "text": "The conductor's interpretation of Mahler's Ninth Symphony emphasized its prophetic qualities: the premonition of catastrophe, the aching nostalgia for a world about to vanish. Mahler composed this knowing he was dying, but he also intuited that European civilization itself stood at the precipice. The orchestra's performance (hushed, trembling, transcendent) left the audience in stunned silence."
     },
     {
       "id": "hard-8",
-      "text": "Constitutional scholars continue debating the \"counter-majoritarian difficulty\": how can judicial review—whereby unelected judges overturn legislation passed by democratic representatives—be reconciled with popular sovereignty? Some argue courts protect minority rights against tyrannical majorities; others contend this reasoning masks ideological preferences in neutral-sounding jurisprudence. The tension, perhaps, is irresolvable; democratic systems must balance competing values rather than optimize for any single principle."
+      "text": "Constitutional scholars continue debating the counter-majoritarian difficulty: how can judicial review (whereby unelected judges overturn legislation passed by democratic representatives) be reconciled with popular sovereignty? Some argue courts protect minority rights against tyrannical majorities; others contend this reasoning masks ideological preferences in neutral-sounding jurisprudence. The tension is perhaps irresolvable."
     },
     {
       "id": "hard-9",
-      "text": "The novelist's prose style—elliptical, fragmented, punctuated by abrupt temporal shifts—reflected her thematic preoccupations: memory's unreliability, identity's fluidity, the impossibility of objective narration. \"Every story,\" she declared in an interview, \"is simultaneously true and false; it reveals by concealing, illuminates by casting shadows.\" Critics accused her of obscurantism; she responded that clarity itself can be a form of deception."
+      "text": "The novelist's prose style (elliptical, fragmented, punctuated by abrupt temporal shifts) reflected her thematic preoccupations: memory's unreliability, identity's fluidity, the impossibility of objective narration. Every story is simultaneously true and false; it reveals by concealing, illuminates by casting shadows. Critics accused her of obscurantism; she responded that clarity itself can be a form of deception."
     },
     {
       "id": "hard-10",
-      "text": "The archaeological expedition unearthed artifacts that complicated prevailing theories about Bronze Age trade networks. Obsidian from Anatolia, lapis lazuli from Afghanistan, and amber from the Baltic—all discovered in a single Mycenaean tomb—suggested commercial connections far more extensive than previously hypothesized. \"We've underestimated ancient peoples' navigational capabilities and their appetite for luxury goods,\" the lead researcher observed. \"Globalization isn't as modern as we assume.\""
+      "text": "The archaeological expedition unearthed artifacts that complicated prevailing theories about Bronze Age trade networks. Obsidian from Anatolia, lapis lazuli from Afghanistan, and amber from the Baltic (all discovered in a single Mycenaean tomb) suggested commercial connections far more extensive than previously hypothesized. We've underestimated ancient peoples' navigational capabilities and their appetite for luxury goods."
+    },
+    {
+      "id": "hard-11",
+      "text": "Neuroplasticity research demonstrates that the adult brain retains remarkable capacity for reorganization. Stroke victims can recover lost functions as undamaged regions assume new roles. Musicians develop enlarged auditory cortices. London taxi drivers exhibit hippocampal growth correlated with navigation expertise. These findings overturn the dogma that neural architecture becomes fixed after childhood."
+    },
+    {
+      "id": "hard-12",
+      "text": "The photographer spent three years documenting disappearing languages. She traveled to remote villages where elders spoke tongues unknown to younger generations. Each portrait captured not just a face but an entire cosmology: unique ways of categorizing time, space, kinship, and nature. When a language dies, she observed, humanity loses an irreplaceable lens on existence."
+    },
+    {
+      "id": "hard-13",
+      "text": "Game theory illuminates strategic interaction in contexts ranging from nuclear deterrence to evolutionary biology. The prisoner's dilemma reveals how rational individual choices produce collectively suboptimal outcomes. Nash equilibria describe stable states where no player benefits from unilateral deviation. These abstract models yield surprising insights into cooperation, competition, and the emergence of social norms."
+    },
+    {
+      "id": "hard-14",
+      "text": "The novelist's literary executor discovered an unpublished manuscript that contradicted everything scholars thought they knew about her creative process. Rather than meticulous planning, the drafts revealed chaotic improvisation. Characters changed names mid-chapter. Plot threads appeared and vanished without resolution. This glimpse behind the curtain complicated the mythology surrounding her methodical genius."
+    },
+    {
+      "id": "hard-15",
+      "text": "Epigenetics challenges genetic determinism by showing how environmental factors modify gene expression without altering DNA sequences. Maternal nutrition during pregnancy can affect descendants three generations later. Trauma may leave molecular signatures inherited by offspring. These mechanisms suggest Lamarckian inheritance isn't entirely wrong, though it operates through biochemistry rather than the crude teleology he proposed."
+    },
+    {
+      "id": "hard-16",
+      "text": "The jazz musician described improvisation as structured freedom. You internalize harmonic progressions, rhythmic patterns, and melodic vocabularies until they become instinctive. Then, in performance, you release conscious control and let your hands discover unexpected phrases. The paradox: genuine spontaneity requires years of disciplined preparation."
+    },
+    {
+      "id": "hard-17",
+      "text": "Historians debate whether the printing press caused the Reformation or merely accelerated existing trends. Luther's theses spread across Europe in weeks rather than years, but theological disputes predated Gutenberg. Technology alone explains nothing; we must examine how social conditions enabled certain uses. The relationship between innovation and cultural transformation resists simple causal narratives."
+    },
+    {
+      "id": "hard-18",
+      "text": "The mountaineer reflected on risk assessment at extreme altitudes. Above eight thousand meters, every decision carries mortal stakes. Turn back or push for the summit? Trust deteriorating weather forecasts? These choices involve probabilistic reasoning under cognitive impairment (hypoxia reduces judgment). Survivors develop intuition calibrated to recognize subtle warning signs that rational analysis might miss."
+    },
+    {
+      "id": "hard-19",
+      "text": "Literary translation involves perpetual compromise between fidelity and readability. Preserve the original's syntax and risk awkward English? Prioritize fluency but sacrifice stylistic peculiarities that define the author's voice? Translators navigate these dilemmas sentence by sentence, knowing that every choice entails loss. The best translations are creative works in their own right."
+    },
+    {
+      "id": "hard-20",
+      "text": "The economist's model predicted that automation would increase inequality while raising aggregate productivity. Displaced workers would struggle to retrain for knowledge-economy roles. Capital owners would capture disproportionate gains. Policy responses (universal basic income, wealth taxes, job guarantees) each presented distinct tradeoffs between efficiency, liberty, and distributive justice. She emphasized that technology creates possibilities; politics determines outcomes."
     }
   ]
 }

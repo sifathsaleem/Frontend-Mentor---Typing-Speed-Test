@@ -64,13 +64,13 @@ class UI {
 }
 
 // start Btn
-// document.querySelector("#start-btn").addEventListener("click", (e) => {
-//   const ui = new UI();
+document.querySelector("#start-btn").addEventListener("click", (e) => {
+  const ui = new UI();
 
-//   if (e.target.parentElement.classList.contains("blur-overlay")) {
-//     ui.getStarted(e.target.parentElement);
-//   }
-// });
+  if (e.target.parentElement.classList.contains("blur-overlay")) {
+    ui.getStarted(e.target.parentElement);
+  }
+});
 
 
 
@@ -176,14 +176,3 @@ arr.forEach((letter) => {
 
 
 
-
-
-if (modeDD.contains(e.target)) {
-      if (e.target.type === "radio") {
-        const selectedVal = getSelectedRadio(modeBtns).value;
-        loadMob(modeBtn, selectedVal, "mode");
-        closeDropdown(modeBtn, modeDD, 400);
-        // loadDeskNav(modeDeskNav, selectedVal)
-      }
-
-    }
