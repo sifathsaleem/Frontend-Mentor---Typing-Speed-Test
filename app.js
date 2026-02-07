@@ -8,7 +8,7 @@ const state = {
   currentPosition: 0,
   correctChars: 0,
   incorrectChars: 0,
-  timeLeft: 60,
+  timeLeft: 0,
   timer: null,
   startTime: null,
   isRunning: false,
@@ -16,6 +16,10 @@ const state = {
 };
 
 // ===== DOM ELEMENTS =====
+
+const inputPage = document.querySelector("main");
+const resultsPage = document.querySelector(".result");
+
 const desktopNav = document.querySelector(".desktop-nav");
 const mobileNav = document.querySelector(".mobile-nav");
 
@@ -32,11 +36,14 @@ const difficultyBtns = document.getElementsByName("difficulty");
 const modeBtns = document.getElementsByName("mode");
 
 const inputField = document.querySelector("#input-field");
+const blurOverlay = document.querySelector(".blur-overlay");
 
 const time = document.querySelector("#time");
 const WPM = document.querySelector("#wpm");
 const Accuracy = document.querySelector("#accuracy");
+const bestWPM = document.querySelector("#best-wpm");
 
+const restartBtn = document.querySelector("#restart-btn");
 // ===== UTILITY FUNCTIONS =====
 
 function setState(property, value) {
@@ -122,13 +129,30 @@ function displayText(text) {
   const textArr = text.split("");
   textArr.forEach((letter) => {
     const span = document.createElement("span");
-    span.classList.add("rounded");
     span.textContent = letter;
     inputField.appendChild(span);
   });
+
+  const spans = inputField.querySelectorAll("span");
+  spans.forEach((letter) => {
+    if (letter.classList.contains("bg-neutral-500")) {
+      console.log(letter)
+    }
+  });
+  spans[state.currentPosition].classList.add("bg-neutral-500");
+}
+
+function loadMode() {
+  if (state.mode === "timed") {
+    time.textContent = "00:60";
+  } else {
+    time.textContent = "00:00";
+  }
 }
 
 function startGame() {
+  if (state.isRunning) return;
+
   state.isRunning = true;
   state.isFinished = false;
   state.startTime = Date.now();
@@ -137,37 +161,96 @@ function startGame() {
   state.incorrectChars = 0;
   state.elapsedTime = 0;
 
-  // startTimer()
+  startTimer(state.mode);
+}
+
+function resetGame() {
+  if (state.timer) {
+    clearInterval(state.timer);
+  }
+
+  state.isRunning = false;
+  state.isFinished = false;
+  state.startTime = null;
+  state.currentPosition = 0;
+  state.correctChars = 0;
+  state.incorrectChars = 0;
+  state.elapsedTime = 0;
+
+  displayRandomText(state.difficulty);
+
+  WPM.textContent = "0";
+  Accuracy.textContent = "100%";
+  loadMode();
+
+  if (!resultsPage.classList.contains("hidden")) {
+    resultsPage.classList.add("hidden");
+    inputPage.classList.remove("hidden");
+  }
+
+  inputField.focus();
+}
+
+function showResults() {
+  resultsPage.classList.remove("hidden");
+  inputPage.classList.add("hidden");
+
+  resultsPage.querySelector("#res-wpm").textContent = WPM.textContent;
+  resultsPage.querySelector("#res-accuracy").textContent = Accuracy.textContent;
+  resultsPage.querySelector("#res-correct-chars").textContent = `${state.correctChars}`;
+  resultsPage.querySelector("#res-incorrect-chars").textContent = `${state.incorrectChars}`;
 }
 
 function endGame() {
+  state.isRunning = false;
+  state.isFinished = true;
   clearInterval(state.timer);
+
+  const currentWPM = parseInt(WPM.textContent);
+  const CbestWPM = parseInt(localStorage.getItem("bestWPM") || 0);
+
+  if (currentWPM > CbestWPM) {
+    bestWPM.textContent = currentWPM;
+    localStorage.setItem("bestWPM", currentWPM);
+  }
+
   console.log("game end");
+  showResults();
 }
 
-function startTimer() {
-  time.textContent = "00:60";
+function startTimer(mode) {
+  state.timeLeft = mode === "timed" ? 60 : 0;
 
   state.timer = setInterval(() => {
-    state.timeLeft--;
+    mode === "timed" ? state.timeLeft-- : state.timeLeft++;
 
     const minutes = Math.floor(state.timeLeft / 60);
     const seconds = state.timeLeft % 60;
 
     time.textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 
-    if (state.mode === "timed" && state.timeLeft <= 0) {
+    if (state.timeLeft <= 0) {
       endGame();
     }
   }, 1000);
 }
 
 function handleTyping(e) {
+  // console.log(e.key)
   e.preventDefault();
 
-  if (!state.isRunning) return;
+  if (!state.isRunning && !blurOverlay.classList.contains("hidden")) {
+    console.log("step 1");
+    console.log(blurOverlay);
+    return;
+  }
+
+  if (!state.isRunning && blurOverlay.classList.contains("hidden")) {
+    startGame();
+  }
 
   if (e.key == "Enter" || e.key === "Backspace") return;
+
   if (e.key.length !== 1) return;
 
   const typedChar = e.key;
@@ -188,7 +271,7 @@ function handleTyping(e) {
       spans[state.currentPosition].classList.add("text-green-500");
     } else {
       if (expectedChar !== " ") {
-        spans[state.currentPosition].classList.add("text-red-500", "underline");
+        spans[state.currentPosition].classList.add("text-red-500", "border-b-[2px]", "border-red-500");
       }
     }
 
@@ -203,7 +286,6 @@ function handleTyping(e) {
 }
 
 function updateStats() {
-  console.log("updated");
   // Calculate WPM
   const elapsedSeconds = (Date.now() - state.startTime) / 1000;
   const words = state.correctChars / 5;
@@ -243,11 +325,8 @@ mobileNav.addEventListener("click", (e) => {
       setState("difficulty", selectedVal);
       loadMobNav(difficultyBtn, selectedVal);
       loadDeskNav(deskDiffNav, selectedVal);
-      displayRandomText(selectedVal.toLocaleLowerCase());
+      resetGame();
       closeDropdown(difficultyBtn, difficultyDD, 400);
-
-      const spans = inputField.querySelectorAll("span");
-      spans[state.currentPosition].classList.add("bg-neutral-500");
     }
   }
 
@@ -257,6 +336,7 @@ mobileNav.addEventListener("click", (e) => {
       loadMobNav(modeBtn, selectedVal);
       loadDeskNav(deskModeNav, selectedVal);
       setState("mode", selectedVal);
+      resetGame();
       closeDropdown(modeBtn, modeDD, 400);
     }
   }
@@ -280,22 +360,23 @@ document.addEventListener("DOMContentLoaded", async () => {
   await loadData();
   displayRandomText(state.difficulty);
 
+  bestWPM.textContent = localStorage.getItem("bestWPM");
+
   // console.log(state);
 });
 
 document.querySelector("#start-btn").addEventListener("click", (e) => {
-  if (e.target.parentElement.classList.contains("blur-overlay")) {
     inputField.classList.remove("blur-sm");
-    e.target.parentElement.remove();
-
-    const spans = inputField.querySelectorAll("span");
-    spans[state.currentPosition].classList.add("bg-neutral-500");
+    blurOverlay.classList.add('hidden')
 
     inputField.focus();
-    startGame();
-  }
-});
+    
+  });
 
 inputField.addEventListener("keydown", (e) => {
   handleTyping(e);
+});
+
+restartBtn.addEventListener("click", () => {
+  resetGame();
 });

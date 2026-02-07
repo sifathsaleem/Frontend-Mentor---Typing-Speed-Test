@@ -146,12 +146,15 @@
 
       <!-- Input section -->
       <div class="container relative flex-1 mx-auto px-4 mt-10">
-        <div class="blur-overlay absolute top-auto w-full h-full left-0 text-neutral-50 z-10">
-          <button class=" relative left-1/2 top-40 -translate-x-1/2 hover:bg-blue-400 bg-blue-500 py-3 px-4 rounded-lg cursor-pointer" id="start-btn">Start Typing Test</button>
+        <div class="blur-overlay absolute flex flex-col items-center top-auto w-full h-full left-0 text-neutral-50 z-10">
+          <div class="relative top-40 flex flex-col gap-3 items-center">
+            <button class="hover:bg-blue-400 block bg-blue-500 py-3 px-4 rounded-lg cursor-pointer" id="start-btn">Start Typing Test</button>
+            <span>Or click the text and start typing</span>
+          </div>
         </div>
 
         <div class="input-wrapper relative">
-          <div id="input-field" contenteditable="true" class="caret-transparent md:text-4xl text-neutral-400 text-2xl outline-none leading-normal blur-sm"></div>
+          <div id="input-field" contenteditable="true" class="transition-all duration-300 md:text-4xl text-neutral-400 text-2xl outline-none leading-normal blur-sm caret-transparent"></div>
         </div>
       </div>
 
@@ -185,20 +188,20 @@
           <div class="flex flex-col sm:flex-row justify-center gap-3">
             <div class="px-4 py-3 border text-neutral-50 border-neutral-400/50 rounded-lg flex flex-col sm:min-w-[180px]">
               <span class="text-neutral-400 inline-block gap-4">WPM:</span>
-              <span class="text-2xl text-neutral-50 font-semibold">85</span>
+              <span class="text-2xl text-neutral-50 font-semibold" id="res-wpm">85</span>
             </div>
             <div class="px-4 py-3 border text-neutral-50 border-neutral-400/50 rounded-lg flex flex-col sm:min-w-[180px]">
               <span class="text-neutral-400 inline-block gap-4">Accuracy:</span>
-              <span class="text-2xl text-red-500 font-semibold">90%</span>
+              <span class="text-2xl text-red-500 font-semibold" id="res-accuracy">90%</span>
             </div>
             <div class="px-4 py-3 border text-neutral-50 border-neutral-400/50 rounded-lg flex flex-col sm:min-w-[180px]">
               <span class="text-neutral-400 inline-block gap-4">Characters</span>
-              <span class="text-2xl text-neutral-400 font-semibold"><span class="text-green-500">120</span>/<span class="text-red-500">5</span></span>
+              <span class="text-2xl text-neutral-400 font-semibold"><span class="text-green-500" id="res-correct-chars">120</span>/<span class="text-red-500" id="res-incorrect-chars">5</span></span>
             </div>
           </div>
 
           <div class="flex justify-center mt-5 sm:mt-10">
-            <button class="bg-gray-50 p-3 flex gap-3 rounded-lg font-semibold items-center cursor-pointer">
+            <button class="bg-gray-50 p-3 flex gap-3 rounded-lg font-semibold items-center cursor-pointer" id="restart-btn">
               <span>Beat This Score</span>
               <img src="./assets/images/icon-restart.svg" class="brightness-0" alt="" />
             </button>
