@@ -10,11 +10,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Filled Icons -->
-    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
   </head>
-  <body class="font-[Sora] bg-neutral-900 relative min-h-screen flex flex-col">
-    <header class="sticky top-0 bg-neutral-900 z-10">
+  <body class="font-[Sora] relative bg-neutral-900 relative min-h-screen flex flex-col">
+    <header class="bg-neutral-900 z-10 flex-shrink-0">
       <div class="container mx-auto">
         <div class="header-wrapper mb-8 p-4">
           <div class="flex justify-between">
@@ -36,179 +35,179 @@
       </div>
     </header>
 
-    <main class="relative flex-1 flex flex-col">
-      <!-- nav section -->
-      <div class="container mx-auto">
-        <div class="nav-wrapper border-b border-neutral-400/50 pb-3 px-4">
-          <!-- 1 -->
-          <div class="flex justify-between flex-col xl:flex-row">
-            <!-- 1.1 -->
-            <div class="flex mb-5 xl:mb-0">
-              <div class="flex flex-col md:gap-3 md:flex-row flex-1 items-center justify-center border-r border-neutral-400/50 md:px-5">
-                <span class="text-neutral-400">WPM:</span>
-                <span id="wpm" class="text-neutral-50 text-2xl font-semibold">0</span>
-              </div>
-              <div class="flex flex-col md:gap-3 md:flex-row flex-1 items-center justify-center border-r border-neutral-400/50 md:px-5">
-                <span class="text-neutral-400">Accuracy:</span>
-                <span id="accuracy" class="text-red-500 md:text-neutral-50 text-2xl font-semibold">100%</span>
-              </div>
-              <div class="flex flex-col md:gap-3 md:flex-row flex-1 items-center justify-center md:px-5">
-                <span class="text-neutral-400">Time:</span>
-                <span id="time" class="text-yellow-300 md:text-neutral-50 text-2xl font-semibold">00:60</span>
-              </div>
-            </div>
-            <!-- 1.2 -->
-
-            <!-- Mobile Version -->
-            <div class="mobile-nav text-gray-50 flex lg:hidden font-light gap-3">
-              <div class="relative flex-1">
-                <button
-                  class="border border-neutral-400 py-1 px-5 rounded-lg bg-neutral-900 inline-flex gap-3 items-center justify-center w-full cursor-pointer hover:bg-neutral-800"
-                  id="difficulty-btn"
-                >
-                  <span>Hard</span>
-                  <img src="./assets/images/icon-down-arrow.svg" class="-rotate-90 transition-all" alt="" />
-                </button>
-                <div class="drop-down flex w-full flex-col bg-neutral-800 rounded-lg absolute top-10 hidden z-20" id="difficulty-dd">
-                  <label for="easy" class="flex items-center gap-3 border-b border-gray-50/50 py-1 px-3 cursor-pointer bg-neutral-800">
-                    <input type="radio" id="easy" value="Easy" name="difficulty" class="sr-only peer" checked />
-                    <div class="w-4 h-4 rounded-full border-1 border-gray-50 peer-checked:border-[5px] peer-checked:border-blue-400 transition-all"></div>
-                    <span class="select-none">Easy</span>
-                  </label>
-
-                  <label for="medium" class="flex items-center gap-3 border-b border-gray-50/50 py-1 px-3 cursor-pointer">
-                    <input type="radio" id="medium" value="Medium" name="difficulty" class="sr-only peer" />
-                    <div class="w-4 h-4 rounded-full border-1 border-gray-50 peer-checked:border-[5px] peer-checked:border-blue-400 transition-all"></div>
-                    <span class="select-none">Medium</span>
-                  </label>
-
-                  <label for="hard" class="flex items-center gap-3 py-1 px-3 cursor-pointer">
-                    <input type="radio" id="hard" value="Hard" name="difficulty" class="sr-only peer" />
-                    <div class="w-4 h-4 rounded-full border-1 border-gray-50 peer-checked:border-[5px] peer-checked:border-blue-400 transition-all"></div>
-                    <span class="select-none">Hard</span>
-                  </label>
+    <main class="flex-1 min-h-0 relative">
+      <section class="transition-all content-area flex flex-col absolute inset-0 z-10">
+        <!-- nav section -->
+        <div class="container mx-auto">
+          <div class="nav-wrapper border-b border-neutral-400/50 pb-3 px-4">
+            <!-- 1 -->
+            <div class="flex justify-between flex-col xl:flex-row">
+              <!-- 1.1 -->
+              <div class="flex mb-5 xl:mb-0">
+                <div class="flex flex-col md:gap-3 md:flex-row flex-1 items-center justify-center border-r border-neutral-400/50 md:px-5">
+                  <span class="text-neutral-400">WPM:</span>
+                  <span id="wpm" class="text-neutral-50 text-2xl font-semibold">0</span>
+                </div>
+                <div class="flex flex-col md:gap-3 md:flex-row flex-1 items-center justify-center border-r border-neutral-400/50 md:px-5">
+                  <span class="text-neutral-400">Accuracy:</span>
+                  <span id="accuracy" class="text-red-500 md:text-neutral-50 text-2xl font-semibold">100%</span>
+                </div>
+                <div class="flex flex-col md:gap-3 md:flex-row flex-1 items-center justify-center md:px-5">
+                  <span class="text-neutral-400">Time:</span>
+                  <span id="time" class="transition-colors text-yellow-300 md:text-neutral-50 text-2xl font-semibold">00:60</span>
                 </div>
               </div>
+              <!-- 1.2 -->
 
-              <div class="relative flex-1">
-                <button class="border border-neutral-400 py-1 px-5 rounded-lg bg-neutral-900 inline-flex justify-center gap-3 items-center w-full cursor-pointer hover:bg-neutral-800" id="mode-btn">
-                  <span>Timed</span>
-                  <img src="./assets/images/icon-down-arrow.svg" id="arrow-icon" class="-rotate-90 transition-all" alt="" />
-                </button>
-                <div class="drop-down flex w-full flex-col bg-neutral-800 rounded-lg absolute top-10 hidden z-20" id="mode-dd">
-                  <label for="timed" class="flex items-center gap-2 border-b border-gray-50/50 py-1 px-3 cursor-pointer">
-                    <input type="radio" id="timed" value="Timed" name="mode" class="sr-only peer" checked />
-                    <div class="w-4 h-4 rounded-full border-1 border-gray-50 peer-checked:border-[5px] peer-checked:border-blue-400 transition-all"></div>
-                    <span class="select-none">Timed (60s)</span>
-                  </label>
-
-                  <label for="passage" class="flex items-center gap-2 py-1 px-3 cursor-pointer">
-                    <input type="radio" id="passage" value="Passage" name="mode" class="sr-only peer" />
-                    <div class="w-4 h-4 rounded-full border-1 border-gray-50 peer-checked:border-[5px] peer-checked:border-blue-400 transition-all"></div>
-                    <span class="select-none">Passage</span>
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <!-- Desktop Version -->
-            <div class="desktop-nav text-gray-50 hidden lg:flex justify-center gap-10 font-light">
-              <div class="flex items-center gap-3" id="desk-difficulty-nav">
-                <span class="text-neutral-400">Difficulty:</span>
-                <div class="space-x-1" id="desk">
-                  <label for="easy" data-value="Easy" class="text-gray-50 border border-gray-50 rounded-lg py-1 px-2 hover:text-gray-50 hover:border-gray-50 cursor-pointer transition-all">
-                    Easy
-                  </label>
-                  <label for="medium" data-value="Medium" class="text-blue-400 border border-blue-400 rounded-lg py-1 px-2 hover:text-gray-50 hover:border-gray-50 cursor-pointer transition-all">
-                    Medium
-                  </label>
-                  <label
-                    for="hard"
-                    data-value="Hard"
-                    class="text-blue-400 border border-blue-400 rounded-lg py-1 px-2 hover:text-gray-50 hover:border-gray-50 cursor-pointer transition-all"
-                    value="Hard"
+              <!-- Mobile Version -->
+              <div class="mobile-nav text-gray-50 flex lg:hidden font-light gap-3">
+                <div class="relative flex-1">
+                  <button
+                    class="border border-neutral-400 py-1 px-5 rounded-lg bg-neutral-900 inline-flex gap-3 items-center justify-center w-full cursor-pointer hover:bg-neutral-800"
+                    id="difficulty-btn"
                   >
-                    Hard
-                  </label>
+                    <span>Hard</span>
+                    <img src="./assets/images/icon-down-arrow.svg" class="-rotate-90 transition-all" alt="" />
+                  </button>
+                  <div class="drop-down flex w-full flex-col bg-neutral-800 rounded-lg absolute top-10 hidden z-20" id="difficulty-dd">
+                    <label for="easy" class="flex items-center gap-3 border-b border-gray-50/50 py-1 px-3 cursor-pointer bg-neutral-800">
+                      <input type="radio" id="easy" value="Easy" name="difficulty" class="sr-only peer" checked />
+                      <div class="w-4 h-4 rounded-full border-1 border-gray-50 peer-checked:border-[5px] peer-checked:border-blue-400 transition-all"></div>
+                      <span class="select-none">Easy</span>
+                    </label>
+
+                    <label for="medium" class="flex items-center gap-3 border-b border-gray-50/50 py-1 px-3 cursor-pointer">
+                      <input type="radio" id="medium" value="Medium" name="difficulty" class="sr-only peer" />
+                      <div class="w-4 h-4 rounded-full border-1 border-gray-50 peer-checked:border-[5px] peer-checked:border-blue-400 transition-all"></div>
+                      <span class="select-none">Medium</span>
+                    </label>
+
+                    <label for="hard" class="flex items-center gap-3 py-1 px-3 cursor-pointer">
+                      <input type="radio" id="hard" value="Hard" name="difficulty" class="sr-only peer" />
+                      <div class="w-4 h-4 rounded-full border-1 border-gray-50 peer-checked:border-[5px] peer-checked:border-blue-400 transition-all"></div>
+                      <span class="select-none">Hard</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="relative flex-1">
+                  <button class="border border-neutral-400 py-1 px-5 rounded-lg bg-neutral-900 inline-flex justify-center gap-3 items-center w-full cursor-pointer hover:bg-neutral-800" id="mode-btn">
+                    <span>Timed</span>
+                    <img src="./assets/images/icon-down-arrow.svg" id="arrow-icon" class="-rotate-90 transition-all" alt="" />
+                  </button>
+                  <div class="drop-down flex w-full flex-col bg-neutral-800 rounded-lg absolute top-10 hidden z-20" id="mode-dd">
+                    <label for="timed" class="flex items-center gap-2 border-b border-gray-50/50 py-1 px-3 cursor-pointer">
+                      <input type="radio" id="timed" value="Timed" name="mode" class="sr-only peer" checked />
+                      <div class="w-4 h-4 rounded-full border-1 border-gray-50 peer-checked:border-[5px] peer-checked:border-blue-400 transition-all"></div>
+                      <span class="select-none">Timed (60s)</span>
+                    </label>
+
+                    <label for="passage" class="flex items-center gap-2 py-1 px-3 cursor-pointer">
+                      <input type="radio" id="passage" value="Passage" name="mode" class="sr-only peer" />
+                      <div class="w-4 h-4 rounded-full border-1 border-gray-50 peer-checked:border-[5px] peer-checked:border-blue-400 transition-all"></div>
+                      <span class="select-none">Passage</span>
+                    </label>
+                  </div>
                 </div>
               </div>
-              <div class="flex items-center gap-3" id="desk-mode-nav">
-                <span class="text-neutral-400">Mode:</span>
-                <div class="space-x-1" id="desk">
-                  <label for="timed" data-value="Timed" class="text-gray-50 border border-gray-50 rounded-lg py-1 px-2 hover:text-gray-50 hover:border-gray-50 cursor-pointer"> Timed (60s) </label>
-                  <label for="passage" data-value="Passage" class="text-blue-400 border border-blue-400 rounded-lg py-1 px-2 hover:text-gray-50 hover:border-gray-50 cursor-pointer"> Passage </label>
+
+              <!-- Desktop Version -->
+              <div class="desktop-nav text-gray-50 hidden lg:flex justify-center gap-10 font-light">
+                <div class="flex items-center gap-3" id="desk-difficulty-nav">
+                  <span class="text-neutral-400">Difficulty:</span>
+                  <div class="space-x-1" id="desk">
+                    <label for="easy" data-value="Easy" class="text-gray-50 border border-gray-50 rounded-lg py-1 px-2 hover:text-gray-50 hover:border-gray-50 cursor-pointer transition-all">
+                      Easy
+                    </label>
+                    <label for="medium" data-value="Medium" class="text-blue-400 border border-blue-400 rounded-lg py-1 px-2 hover:text-gray-50 hover:border-gray-50 cursor-pointer transition-all">
+                      Medium
+                    </label>
+                    <label
+                      for="hard"
+                      data-value="Hard"
+                      class="text-blue-400 border border-blue-400 rounded-lg py-1 px-2 hover:text-gray-50 hover:border-gray-50 cursor-pointer transition-all"
+                      value="Hard"
+                    >
+                      Hard
+                    </label>
+                  </div>
+                </div>
+                <div class="flex items-center gap-3" id="desk-mode-nav">
+                  <span class="text-neutral-400">Mode:</span>
+                  <div class="space-x-1" id="desk">
+                    <label for="timed" data-value="Timed" class="text-gray-50 border border-gray-50 rounded-lg py-1 px-2 hover:text-gray-50 hover:border-gray-50 cursor-pointer"> Timed (60s) </label>
+                    <label for="passage" data-value="Passage" class="text-blue-400 border border-blue-400 rounded-lg py-1 px-2 hover:text-gray-50 hover:border-gray-50 cursor-pointer"> Passage </label>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Input section -->
-      <div class="container relative flex-1 mx-auto px-4 mt-10">
-        <div class="blur-overlay absolute flex flex-col items-center top-auto w-full h-full left-0 text-neutral-50 z-10">
-          <div class="relative top-40 flex flex-col gap-3 items-center">
-            <button class="hover:bg-blue-400 block bg-blue-500 py-3 px-4 rounded-lg cursor-pointer" id="start-btn">Start Typing Test</button>
-            <span>Or click the text and start typing</span>
+        <!-- Input section -->
+        <div class="container overflow-hidden relative flex-1 min-h-0 min-w-0 flex mx-auto px-4 mt-10">
+          <div class="blur-overlay absolute flex flex-col items-center justify-center inset-0 text-neutral-50 z-10">
+            <div class="flex flex-col gap-3 items-center">
+              <button class="hover:bg-blue-400 block bg-blue-500 py-3 px-4 rounded-lg cursor-pointer" id="start-btn">Start Typing Test</button>
+              <span>Or click the text and start typing</span>
+            </div>
+          </div>
+
+          <div class="input-wrapper relative flex-1 min-h-0">
+            <div id="input-field" contenteditable="true" class="transition-all h-full duration-200 md:text-4xl text-neutral-400 text-2xl outline-none leading-normal blur-sm caret-transparent"></div>
           </div>
         </div>
 
-        <div class="input-wrapper relative">
-          <div id="input-field" contenteditable="true" class="transition-all duration-300 md:text-4xl text-neutral-400 text-2xl outline-none leading-normal blur-sm caret-transparent"></div>
-        </div>
-      </div>
-
-      <!-- Restart section -->
-      <!-- <div class="container mx-auto px-4 mt-10">
-        <div class="restart-wrapper flex justify-center py-7 border-t border-b border-neutral-400/50">
-          <button class="text-gray-50 gap-3 bg-neutral-800 rounded-lg p-3 flex cursor-pointer">
-            <span>Restart Test</span>
-            <img src="./assets/images/icon-restart.svg" alt="" />
-          </button>
-        </div>
-      </div> -->
-    </main>
-
-    <section class="result flex-1 hidden">
-      <div class="container mx-auto px-4 lg:px-0 relative">
-        <img src="./assets/images/pattern-star-1.svg" class="absolute bottom-0 right-5 lg:right-20 w-10 lg:w-16 animate-spin [animation-duration:20s]" alt="" />
-        <img src="./assets/images/pattern-star-2.svg" class="absolute top-10 left-5 lg:left-20 w-5 lg:w-7 animate-spin [animation-duration:20s]" alt="" />
-        <div class="result-wrapper">
-          <div class="flex justify-center my-5 lg:my-10">
-            <div class="p-2 rounded-full bg-green-500/10">
-              <img src="./assets/images/icon-completed.svg" class="border-8 rounded-full border-green-500/20" alt="" />
-            </div>
-          </div>
-
-          <div class="text-center mb-5">
-            <h1 class="text-neutral-50 mb-2 text-2xl lg:text-3xl font-semibold">Baseline Established!</h1>
-            <p class="text-neutral-400 text-sm lg:text-base">You've set the bar. Now the real challenge begins—time to beat it.</p>
-          </div>
-
-          <div class="flex flex-col sm:flex-row justify-center gap-3">
-            <div class="px-4 py-3 border text-neutral-50 border-neutral-400/50 rounded-lg flex flex-col sm:min-w-[180px]">
-              <span class="text-neutral-400 inline-block gap-4">WPM:</span>
-              <span class="text-2xl text-neutral-50 font-semibold" id="res-wpm">85</span>
-            </div>
-            <div class="px-4 py-3 border text-neutral-50 border-neutral-400/50 rounded-lg flex flex-col sm:min-w-[180px]">
-              <span class="text-neutral-400 inline-block gap-4">Accuracy:</span>
-              <span class="text-2xl text-red-500 font-semibold" id="res-accuracy">90%</span>
-            </div>
-            <div class="px-4 py-3 border text-neutral-50 border-neutral-400/50 rounded-lg flex flex-col sm:min-w-[180px]">
-              <span class="text-neutral-400 inline-block gap-4">Characters</span>
-              <span class="text-2xl text-neutral-400 font-semibold"><span class="text-green-500" id="res-correct-chars">120</span>/<span class="text-red-500" id="res-incorrect-chars">5</span></span>
-            </div>
-          </div>
-
-          <div class="flex justify-center mt-5 sm:mt-10">
-            <button class="bg-gray-50 p-3 flex gap-3 rounded-lg font-semibold items-center cursor-pointer" id="restart-btn">
-              <span>Beat This Score</span>
-              <img src="./assets/images/icon-restart.svg" class="brightness-0" alt="" />
+        <!-- Restart section -->
+        <div class="container transition-all mx-auto px-4 hidden" id="restart-container">
+          <div class="restart-wrapper flex justify-center py-7 border-t border-b border-neutral-400/50">
+            <button id="restart-btn" class="text-gray-50 gap-3 hover:bg-neutral-500 bg-neutral-800 rounded-lg p-3 flex cursor-pointer" name="restart">
+              <span>Restart Test</span>
+              <img src="./assets/images/icon-restart.svg" alt="" />
             </button>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section class="transition-all result absolute inset-0 opacity-0">
+        <div class="container mx-auto px-4 lg:px-0 relative">
+          <img src="./assets/images/pattern-star-1.svg" class="absolute bottom-0 right-5 lg:right-20 w-10 lg:w-16 animate-spin [animation-duration:20s]" alt="" />
+          <img src="./assets/images/pattern-star-2.svg" class="absolute top-10 left-5 lg:left-20 w-5 lg:w-7 animate-spin [animation-duration:20s]" alt="" />
+          <div class="result-wrapper relative">
+            <div class="flex justify-center my-5 lg:my-10" id="img-wrapper">
+            </div>
+
+            <div class="text-center mb-5">
+              <h1 class="text-neutral-50 mb-2 text-2xl lg:text-3xl font-semibold" id="text-1">Baseline Established!</h1>
+              <p class="text-neutral-400 text-sm lg:text-base" id="text-2">You've set the bar. Now the real challenge begins—time to beat it.</p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-3">
+              <div class="px-4 py-3 border text-neutral-50 border-neutral-400/50 rounded-lg flex flex-col sm:min-w-[180px]">
+                <span class="text-neutral-400 inline-block gap-4">WPM:</span>
+                <span class="text-2xl text-neutral-50 font-semibold" id="res-wpm">85</span>
+              </div>
+              <div class="px-4 py-3 border text-neutral-50 border-neutral-400/50 rounded-lg flex flex-col sm:min-w-[180px]">
+                <span class="text-neutral-400 inline-block gap-4">Accuracy:</span>
+                <span class="text-2xl font-semibold" id="res-accuracy">90%</span>
+              </div>
+              <div class="px-4 py-3 border text-neutral-50 border-neutral-400/50 rounded-lg flex flex-col sm:min-w-[180px]">
+                <span class="text-neutral-400 inline-block gap-4">Characters</span>
+                <span class="text-2xl text-neutral-400 font-semibold"><span class="text-green-500" id="res-correct-chars">120</span>/<span class="text-red-500" id="res-incorrect-chars">5</span></span>
+              </div>
+            </div>
+
+            <div class="flex justify-center mt-5 sm:mt-10">
+              <button name="restart" class="bg-gray-50 p-3 hover:bg-neutral-300 flex gap-3 rounded-lg font-semibold items-center cursor-pointer" id="restart-btn">
+                <span id="btn-text">Beat This Score</span>
+                <img src="./assets/images/icon-restart.svg" class="brightness-0" alt="" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
     <script src="./app.js"></script>
     <!-- <script src="./main.js"></script> -->
   </body>

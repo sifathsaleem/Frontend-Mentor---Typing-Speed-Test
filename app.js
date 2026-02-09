@@ -13,12 +13,14 @@ const state = {
   startTime: null,
   isRunning: false,
   isFinished: false,
+  accuracy: 0,
+  WPM: 0,
 };
 
 // ===== DOM ELEMENTS =====
 
-const inputPage = document.querySelector("main");
-const resultsPage = document.querySelector(".result");
+const inputWrapper = document.querySelector(".content-area");
+const resultsWrapper = document.querySelector(".result");
 
 const desktopNav = document.querySelector(".desktop-nav");
 const mobileNav = document.querySelector(".mobile-nav");
@@ -37,13 +39,18 @@ const modeBtns = document.getElementsByName("mode");
 
 const inputField = document.querySelector("#input-field");
 const blurOverlay = document.querySelector(".blur-overlay");
+const inputRestart = document.querySelector("#restart-container");
 
 const time = document.querySelector("#time");
 const WPM = document.querySelector("#wpm");
 const Accuracy = document.querySelector("#accuracy");
 const bestWPM = document.querySelector("#best-wpm");
 
-const restartBtn = document.querySelector("#restart-btn");
+const restartBtn = document.querySelectorAll("#restart-btn");
+const imgWrapper = document.querySelector("#img-wrapper");
+const headText = document.querySelector("#text-1");
+const subText = document.querySelector("#text-2");
+const btnText = document.querySelector("#btn-text");
 // ===== UTILITY FUNCTIONS =====
 
 function setState(property, value) {
@@ -118,6 +125,12 @@ function displayRandomText(difficulty) {
 
 function Cursor() {
   const spans = inputField.querySelectorAll("span");
+
+  if (!state.isRunning) {
+    spans[state.currentPosition].classList.add("bg-neutral-500");
+    return;
+  }
+
   spans[state.currentPosition].classList.remove("bg-neutral-500");
   if (spans[state.currentPosition + 1]) {
     spans[state.currentPosition + 1].classList.add("bg-neutral-500");
@@ -133,13 +146,7 @@ function displayText(text) {
     inputField.appendChild(span);
   });
 
-  const spans = inputField.querySelectorAll("span");
-  spans.forEach((letter) => {
-    if (letter.classList.contains("bg-neutral-500")) {
-      console.log(letter)
-    }
-  });
-  spans[state.currentPosition].classList.add("bg-neutral-500");
+  Cursor();
 }
 
 function loadMode() {
@@ -162,6 +169,8 @@ function startGame() {
   state.elapsedTime = 0;
 
   startTimer(state.mode);
+
+  inputRestart.classList.remove("hidden");
 }
 
 function resetGame() {
@@ -182,39 +191,80 @@ function resetGame() {
   WPM.textContent = "0";
   Accuracy.textContent = "100%";
   loadMode();
+  time.classList.remove("text-red-500", "animate-pulse");
+  time.classList.add("md:text-neutral-50", "text-yellow-300");
 
-  if (!resultsPage.classList.contains("hidden")) {
-    resultsPage.classList.add("hidden");
-    inputPage.classList.remove("hidden");
-  }
-
+  showInput();
   inputField.focus();
+  Cursor();
 }
 
 function showResults() {
-  resultsPage.classList.remove("hidden");
-  inputPage.classList.add("hidden");
+  const { accuracy, WPM, correctChars, incorrectChars } = state;
+  const resAccuracy = resultsWrapper.querySelector("#res-accuracy");
+  resultsWrapper.querySelector("#res-wpm").textContent = `${WPM}`;
+  resultsWrapper.querySelector("#res-accuracy").textContent = `${accuracy}%`;
+  resultsWrapper.querySelector("#res-correct-chars").textContent = `${correctChars}`;
+  resultsWrapper.querySelector("#res-incorrect-chars").textContent = `${incorrectChars}`;
+  resAccuracy.classList.remove("text-green-500");
 
-  resultsPage.querySelector("#res-wpm").textContent = WPM.textContent;
-  resultsPage.querySelector("#res-accuracy").textContent = Accuracy.textContent;
-  resultsPage.querySelector("#res-correct-chars").textContent = `${state.correctChars}`;
-  resultsPage.querySelector("#res-incorrect-chars").textContent = `${state.incorrectChars}`;
-}
+  if (accuracy > 90) {
+    resAccuracy.classList.add("text-green-500");
+  }
 
-function endGame() {
-  state.isRunning = false;
-  state.isFinished = true;
-  clearInterval(state.timer);
-
-  const currentWPM = parseInt(WPM.textContent);
   const CbestWPM = parseInt(localStorage.getItem("bestWPM") || 0);
+  const currentWPM = parseInt(WPM);
+
+  if (CbestWPM === 0) {
+    imgWrapper.innerHTML = `
+                          <div class="p-2 rounded-full bg-green-500/10">
+                            <img src="./assets/images/icon-completed.svg" class="border-8 rounded-full border-green-500/20" alt="" />
+                          </div>`;
+    headText.textContent = "Baseline Established!";
+    subText.textContent = "You've set the bar. Now the real challenge begins—time to beat it.";
+    btnText.textContent = "Go Again";
+  } else if (WPM < CbestWPM) {
+    imgWrapper.innerHTML = `<div class="p-2 rounded-full bg-green-500/10">
+                              <img src="./assets/images/icon-completed.svg" class="border-8 rounded-full border-green-500/20" alt="" />
+                            </div>`;
+    headText.textContent = "Test Completed!";
+    subText.textContent = "Solid run. Keep pushing to beat your high score.";
+    btnText.textContent = "Go Again";
+  } else if (WPM > CbestWPM && CbestWPM > 0) {
+    imgWrapper.innerHTML = `
+                  <div class="p-2">
+                    <img src="./assets/images/icon-new-pb.svg" alt="">
+                  </div>`;
+    headText.textContent = "High Score Smashed!";
+    subText.textContent = "You're getting faster. That was incredible typing.";
+    btnText.textContent = "Go Again";
+    celebrateHighScore();
+  }
 
   if (currentWPM > CbestWPM) {
     bestWPM.textContent = currentWPM;
     localStorage.setItem("bestWPM", currentWPM);
   }
 
-  console.log("game end");
+  inputWrapper.classList.add("opacity-0", "scale-95", "pointer-events-none");
+  resultsWrapper.classList.remove("opacity-0", "scale-95", "pointer-events-none");
+  inputWrapper.classList.remove("z-10");
+  resultsWrapper.classList.add("z-10");
+}
+
+function showInput() {
+  resultsWrapper.classList.add("opacity-0", "scale-95", "pointer-events-none");
+  inputWrapper.classList.remove("opacity-0", "scale-95", "pointer-events-none");
+  inputWrapper.classList.add("z-10");
+  resultsWrapper.classList.remove("z-10");
+}
+
+function endGame() {
+  state.isRunning = false;
+  state.isFinished = true;
+  clearInterval(state.timer);
+  inputRestart.classList.add("hidden");
+
   showResults();
 }
 
@@ -229,7 +279,12 @@ function startTimer(mode) {
 
     time.textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 
-    if (state.timeLeft <= 0) {
+    if (mode === "timed" && state.timeLeft <= 10) {
+      time.classList.remove("text-yellow-300", "md:text-neutral-50");
+      time.classList.add("text-red-500", "animate-pulse");
+    }
+
+    if (state.timeLeft < 0) {
       endGame();
     }
   }, 1000);
@@ -240,8 +295,6 @@ function handleTyping(e) {
   e.preventDefault();
 
   if (!state.isRunning && !blurOverlay.classList.contains("hidden")) {
-    console.log("step 1");
-    console.log(blurOverlay);
     return;
   }
 
@@ -286,18 +339,30 @@ function handleTyping(e) {
 }
 
 function updateStats() {
+  const { startTime, correctChars, incorrectChars } = state;
   // Calculate WPM
-  const elapsedSeconds = (Date.now() - state.startTime) / 1000;
-  const words = state.correctChars / 5;
+  const elapsedSeconds = (Date.now() - startTime) / 1000;
+  const words = correctChars / 5;
   const minutes = elapsedSeconds / 60;
   const wpm = minutes > 0 ? Math.round(words / minutes) : 0;
 
   // Calculate Accuracy
-  const totalChars = state.correctChars + state.incorrectChars;
-  const accuracy = totalChars > 0 ? Math.round((state.correctChars / totalChars) * 100) : 100;
+  const totalChars = correctChars + incorrectChars;
+  const accuracy = totalChars > 0 ? Math.round((correctChars / totalChars) * 100) : 100;
+
+  state.accuracy = accuracy;
+  state.WPM = wpm;
 
   WPM.textContent = wpm;
   Accuracy.textContent = `${accuracy}%`;
+}
+
+function celebrateHighScore() {
+  confetti({
+    particleCount: 80,
+    spread: 70,
+    origin: { y: 0.6 },
+  });
 }
 
 // ===== EVENT LISTENERS =====
@@ -366,17 +431,23 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 document.querySelector("#start-btn").addEventListener("click", (e) => {
-    inputField.classList.remove("blur-sm");
-    blurOverlay.classList.add('hidden')
+  inputField.classList.remove("blur-sm");
+  blurOverlay.classList.add("hidden");
 
-    inputField.focus();
-    
-  });
+  showInput();
+  inputField.focus();
+});
 
 inputField.addEventListener("keydown", (e) => {
   handleTyping(e);
 });
 
-restartBtn.addEventListener("click", () => {
-  resetGame();
+restartBtn.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    resetGame();
+  });
 });
+
+
+
+
