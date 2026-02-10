@@ -55,31 +55,28 @@ const btnText = document.querySelector("#btn-text");
 
 function setState(property, value) {
   state[property] = value.toLocaleLowerCase();
-} // ✅
+}
 
 function toggleDropDown(button) {
   button.querySelector("img").classList.toggle("-rotate-90");
   const DD = button.closest("div").querySelector(".drop-down");
   DD.classList.toggle("hidden");
-} // ✅
+}
 
 function closeDropdown(button, DropDown, timeOut = 0) {
   setTimeout(() => {
     button.querySelector("img").classList.add("-rotate-90");
     DropDown.classList.add("hidden");
   }, timeOut);
-} // ✅
+}
 
 function loadMobNav(button, value) {
-  // console.log("Mob-nav loaded with " + value);
   const btnContent = button.querySelector("span");
   btnContent.textContent = value;
 
-  // loadDeskNav(difficultyDeskNav, state.difficulty);
-} // ✅
+}
 
 function loadDeskNav(targetBtns, value) {
-  // console.log("Des-nav loaded with " + value);
   const difficultyDeskBtns = targetBtns.querySelectorAll("label");
   difficultyDeskBtns.forEach((label) => {
     label.classList.remove("text-gray-50", "border-gray-50");
@@ -90,7 +87,7 @@ function loadDeskNav(targetBtns, value) {
       label.classList.add("text-gray-50", "border-gray-50");
     }
   });
-} // ✅
+}
 
 function getSelectedRadio(targetBtns) {
   let selected = null;
@@ -101,7 +98,7 @@ function getSelectedRadio(targetBtns) {
   });
 
   return selected;
-} // ✅
+}
 
 async function loadData() {
   try {
@@ -110,7 +107,7 @@ async function loadData() {
   } catch (error) {
     console.log("Error loading text: ", error);
   }
-} // ✅
+}
 
 // ===== GAME LOGIC =====
 
@@ -222,7 +219,7 @@ function showResults() {
                           </div>`;
     headText.textContent = "Baseline Established!";
     subText.textContent = "You've set the bar. Now the real challenge begins—time to beat it.";
-    btnText.textContent = "Go Again";
+    btnText.textContent = "Beat This Score";
   } else if (WPM < CbestWPM) {
     imgWrapper.innerHTML = `<div class="p-2 rounded-full bg-green-500/10">
                               <img src="./assets/images/icon-completed.svg" class="border-8 rounded-full border-green-500/20" alt="" />
@@ -237,7 +234,7 @@ function showResults() {
                   </div>`;
     headText.textContent = "High Score Smashed!";
     subText.textContent = "You're getting faster. That was incredible typing.";
-    btnText.textContent = "Go Again";
+    btnText.textContent = "Beat This Score";
     celebrateHighScore();
   }
 
@@ -291,7 +288,6 @@ function startTimer(mode) {
 }
 
 function handleTyping(e) {
-  // console.log(e.key)
   e.preventDefault();
 
   if (!state.isRunning && !blurOverlay.classList.contains("hidden")) {
@@ -371,7 +367,7 @@ mobileNav.querySelectorAll("button").forEach((button) => {
   button.addEventListener("click", () => {
     toggleDropDown(button);
   });
-}); // ✅
+});
 
 document.addEventListener("click", (e) => {
   if (!difficultyBtn.contains(e.target) && !difficultyDD.contains(e.target)) {
@@ -381,7 +377,7 @@ document.addEventListener("click", (e) => {
   if (!modeBtn.contains(e.target) && !modeDD.contains(e.target)) {
     closeDropdown(modeBtn, modeDD);
   }
-}); // ✅
+});
 
 mobileNav.addEventListener("click", (e) => {
   if (difficultyDD.contains(e.target)) {
