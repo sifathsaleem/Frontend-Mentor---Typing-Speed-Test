@@ -207,7 +207,7 @@ function resetGame() {
   Cursor();
   hiddenInput.focus();
   hiddenInput.disabled = false;
-  
+
   showInput();
 }
 
@@ -379,6 +379,12 @@ function celebrateHighScore() {
   });
 }
 
+const focusHiddenInput = () => {
+  if (state.isRunning && !state.isFinished) {
+    hiddenInput.focus();
+  }
+};
+
 // ===== EVENT LISTENERS =====
 
 mobileNav.querySelectorAll("button").forEach((button) => {
@@ -466,3 +472,8 @@ hiddenInput.addEventListener("input", (e) => {
     e.target.value = "";
   }
 });
+
+
+
+inputField.addEventListener("click", focusHiddenInput);
+inputField.addEventListener("touchend", focusHiddenInput);
