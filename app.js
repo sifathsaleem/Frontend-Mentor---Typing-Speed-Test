@@ -204,9 +204,10 @@ function resetGame() {
   time.classList.remove("text-red-500", "animate-pulse");
   time.classList.add("md:text-neutral-50", "text-yellow-300");
 
+  Cursor();
   showInput();
   hiddenInput.focus();
-  Cursor();
+  hiddenInput.disabled = false;
 }
 
 function showResults() {
