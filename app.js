@@ -205,9 +205,10 @@ function resetGame() {
   time.classList.add("md:text-neutral-50", "text-yellow-300");
 
   Cursor();
-  showInput();
   hiddenInput.focus();
   hiddenInput.disabled = false;
+  
+  showInput();
 }
 
 function showResults() {
