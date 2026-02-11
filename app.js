@@ -52,6 +52,8 @@ const imgWrapper = document.querySelector("#img-wrapper");
 const headText = document.querySelector("#text-1");
 const subText = document.querySelector("#text-2");
 const btnText = document.querySelector("#btn-text");
+
+inputField.style.cursor = "text";
 // ===== UTILITY FUNCTIONS =====
 
 function setState(property, value) {
@@ -135,14 +137,22 @@ function Cursor() {
 }
 
 function scrollToCursor() {
+  const container = document.querySelector(".input-wrapper"); // your scrollable parent
   const spans = inputField.querySelectorAll("span");
   const currentSpan = spans[state.currentPosition] || spans[state.currentPosition - 1];
 
-  if (currentSpan) {
+  if (!currentSpan) return;
+
+  const containerRect = container.getBoundingClientRect();
+  const spanRect = currentSpan.getBoundingClientRect();
+
+  // Only scroll if the char is NOT fully visible (with a small buffer)
+  const buffer = 60; // px from bottom/top before we scroll
+  if (spanRect.bottom > containerRect.bottom - buffer || spanRect.top < containerRect.top + buffer) {
     currentSpan.scrollIntoView({
-      block: "center",
+      block: "center", // or "nearest" if you prefer minimal movement
       inline: "nearest",
-      behavior: "smooth",
+      behavior: "auto", // ← "auto" or "instant" = no animation = ZERO flicker
     });
   }
 }
@@ -206,7 +216,7 @@ function resetGame() {
 
   Cursor();
   hiddenInput.focus();
-  hiddenInput.disabled = false;
+  // hiddenInput.disabled = false;
 
   showInput();
 }
@@ -278,7 +288,7 @@ function endGame() {
   inputRestart.classList.add("hidden");
 
   hiddenInput.blur();
-  hiddenInput.disabled = true;
+  // hiddenInput.disabled = true;
   showResults();
 }
 
@@ -380,9 +390,7 @@ function celebrateHighScore() {
 }
 
 const focusHiddenInput = () => {
-  if (state.isRunning && !state.isFinished) {
     hiddenInput.focus();
-  }
 };
 
 // ===== EVENT LISTENERS =====
