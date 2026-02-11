@@ -145,6 +145,8 @@ function scrollToCursor() {
 
   const containerRect = container.getBoundingClientRect();
   const spanRect = currentSpan.getBoundingClientRect();
+  console.log(containerRect)
+  console.log(spanRect)
 
   // Only scroll if the char is NOT fully visible (with a small buffer)
   const buffer = 60; // px from bottom/top before we scroll
