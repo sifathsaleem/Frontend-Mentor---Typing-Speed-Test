@@ -14,7 +14,7 @@
   <body class="font-[Sora] relative bg-neutral-900 relative min-h-screen flex flex-col">
     <header class="bg-neutral-900 z-10 flex-shrink-0">
       <div class="container mx-auto">
-        <div class="header-wrapper mb-8 p-4">
+        <div class="header-wrapper mb-4 lg:mb-8 p-4">
           <div class="flex justify-between">
             <div>
               <img src="./assets/images/logo-small.svg" class="md:hidden" alt="" />
@@ -144,7 +144,7 @@
         </div>
 
         <!-- Input section -->
-        <div class="container overflow-hidden relative flex-1 min-h-0 min-w-0 flex mx-auto px-4 mt-10">
+        <div class="container overflow-hidden relative flex-1 min-h-0 min-w-0 flex mx-auto px-4 mt-5 lg:mt-10">
           <div class="blur-overlay absolute flex flex-col items-center justify-center inset-0 text-neutral-50 z-10">
             <div class="flex flex-col gap-3 items-center">
               <button class="hover:bg-blue-400 block bg-blue-500 py-3 px-4 rounded-lg cursor-pointer" id="start-btn">Start Typing Test</button>
@@ -153,14 +153,14 @@
           </div>
 
           <div class="input-wrapper relative flex-1 min-h-0">
-            <input type="text" id="hidden-input" class="opacity-0">
-            <div id="input-field" class="transition-all h-full duration-200 md:text-4xl text-neutral-400 text-2xl outline-none leading-normal blur-sm caret-transparent"></div>
+            <input type="text" id="hidden-input" autocomplete="off" autocapitalize="off" spellcheck="false" class="opacity-0 absolute w-0 h-0 pointer-events-none">
+            <div id="input-field" class="overflow-y-auto transition-all h-full duration-200 md:text-4xl text-neutral-400 text-2xl outline-none leading-normal blur-sm caret-transparent"></div>
           </div>
         </div>
 
         <!-- Restart section -->
         <div class="container transition-all mx-auto px-4 hidden" id="restart-container">
-          <div class="restart-wrapper flex justify-center py-7 border-t border-b border-neutral-400/50">
+          <div class="restart-wrapper flex justify-center py-4 lg:py-8 border-t border-neutral-400/50">
             <button id="restart-btn" class="text-gray-50 gap-3 hover:bg-neutral-500 bg-neutral-800 rounded-lg p-3 flex cursor-pointer" name="restart">
               <span>Restart Test</span>
               <img src="./assets/images/icon-restart.svg" alt="" />

@@ -74,7 +74,6 @@ function closeDropdown(button, DropDown, timeOut = 0) {
 function loadMobNav(button, value) {
   const btnContent = button.querySelector("span");
   btnContent.textContent = value;
-
 }
 
 function loadDeskNav(targetBtns, value) {
@@ -132,6 +131,19 @@ function Cursor() {
   spans[state.currentPosition].classList.remove("bg-neutral-500");
   if (spans[state.currentPosition + 1]) {
     spans[state.currentPosition + 1].classList.add("bg-neutral-500");
+  }
+}
+
+function scrollToCursor() {
+  const spans = inputField.querySelectorAll("span");
+  const currentSpan = spans[state.currentPosition] || spans[state.currentPosition - 1];
+
+  if (currentSpan) {
+    currentSpan.scrollIntoView({
+      block: "center",
+      inline: "nearest",
+      behavior: "smooth",
+    });
   }
 }
 
@@ -263,6 +275,8 @@ function endGame() {
   clearInterval(state.timer);
   inputRestart.classList.add("hidden");
 
+  hiddenInput.blur();
+  hiddenInput.disabled = true;
   showResults();
 }
 
@@ -326,6 +340,7 @@ function handleTyping(key) {
     }
 
     Cursor();
+    scrollToCursor();
   }
 
   state.currentPosition++;
@@ -443,12 +458,9 @@ restartBtn.forEach((btn) => {
   });
 });
 
-
-hiddenInput.addEventListener('input', (e) => {
-  if(e.data) {
-    handleTyping(e.data)
+hiddenInput.addEventListener("input", (e) => {
+  if (e.data) {
+    handleTyping(e.data);
+    e.target.value = "";
   }
-})
-
-
-
+});
