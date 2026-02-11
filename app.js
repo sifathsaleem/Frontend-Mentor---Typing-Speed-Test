@@ -38,6 +38,7 @@ const difficultyBtns = document.getElementsByName("difficulty");
 const modeBtns = document.getElementsByName("mode");
 
 const inputField = document.querySelector("#input-field");
+const hiddenInput = document.querySelector("#hidden-input");
 const blurOverlay = document.querySelector(".blur-overlay");
 const inputRestart = document.querySelector("#restart-container");
 
@@ -192,7 +193,7 @@ function resetGame() {
   time.classList.add("md:text-neutral-50", "text-yellow-300");
 
   showInput();
-  inputField.focus();
+  hiddenInput.focus();
   Cursor();
 }
 
@@ -287,8 +288,8 @@ function startTimer(mode) {
   }, 1000);
 }
 
-function handleTyping(e) {
-  e.preventDefault();
+function handleTyping(key) {
+  // e.preventDefault();
 
   if (!state.isRunning && !blurOverlay.classList.contains("hidden")) {
     return;
@@ -298,11 +299,11 @@ function handleTyping(e) {
     startGame();
   }
 
-  if (e.key == "Enter" || e.key === "Backspace") return;
+  // if (e.key == "Enter" || e.key === "Backspace") return;
 
-  if (e.key.length !== 1) return;
+  // if (e.key.length !== 1) return;
 
-  const typedChar = e.key;
+  const typedChar = key;
   const expectedChar = state.currentText[state.currentPosition];
   const isCorrect = typedChar === expectedChar;
 
@@ -416,8 +417,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   setState("difficulty", difficulty);
   setState("mode", mode);
 
-  inputField.focus();
-
   await loadData();
   displayRandomText(state.difficulty);
 
@@ -431,12 +430,12 @@ document.querySelector("#start-btn").addEventListener("click", (e) => {
   blurOverlay.classList.add("hidden");
 
   showInput();
-  inputField.focus();
+  hiddenInput.focus();
 });
 
-inputField.addEventListener("keydown", (e) => {
-  handleTyping(e);
-});
+// inputField.addEventListener("keydown", (e) => {
+//   handleTyping(e);
+// });
 
 restartBtn.forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -444,6 +443,12 @@ restartBtn.forEach((btn) => {
   });
 });
 
+
+hiddenInput.addEventListener('input', (e) => {
+  if(e.data) {
+    handleTyping(e.data)
+  }
+})
 
 
 
