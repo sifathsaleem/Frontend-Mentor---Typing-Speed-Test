@@ -42,7 +42,7 @@ Users should be able to:
 - Semantic HTML5 markup
 - Tailwind CSS (via CDN – my first time using Tailwind!)
 - Vanilla JavaScript (no frameworks)
-- `contenteditable` + span-by-span DOM manipulation
+- span-by-span DOM manipulation
 - Fetch API to load texts from `data.json`
 - LocalStorage for personal best
 - canvas-confetti for the high-score celebration
@@ -60,8 +60,7 @@ This project was a big step up for me. Here are the things I’m most proud of a
 - **Real-time WPM & accuracy**  
   Calculating WPM `(correctChars / 5) / (elapsed / 60)` and accuracy on every keystroke taught me how to keep state clean and update the DOM efficiently.
 
-- **Other cool stuff**  
-  - First time using `contenteditable`  
+- **Other cool stuff** 
   - Building a proper timer with `setInterval` and conditional styling (red pulse when <10s left)  
   - State management in pure JS (a single `state` object + `setState` helper)  
   - Conditional rendering of result screen vs typing screen with opacity/scale transitions
