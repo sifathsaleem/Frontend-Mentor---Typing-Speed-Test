@@ -33,7 +33,6 @@ Users should be able to:
 ### Links
 
 - Live Site URL: [https://your-typing-test.netlify.app](https://your-typing-test.netlify.app) ← replace with your actual Netlify link
-- Solution URL: (will add after submitting to Frontend Mentor)
 
 ## My process
 
