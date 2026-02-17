@@ -145,8 +145,8 @@ function scrollToCursor() {
 
   const containerRect = container.getBoundingClientRect();
   const spanRect = currentSpan.getBoundingClientRect();
-  console.log(containerRect)
-  console.log(spanRect)
+  console.log(containerRect);
+  console.log(spanRect);
 
   // Only scroll if the char is NOT fully visible (with a small buffer)
   const buffer = 60; // px from bottom/top before we scroll
@@ -392,7 +392,7 @@ function celebrateHighScore() {
 }
 
 const focusHiddenInput = () => {
-    hiddenInput.focus();
+  hiddenInput.focus();
 };
 
 // ===== EVENT LISTENERS =====
@@ -453,7 +453,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   await loadData();
   displayRandomText(state.difficulty);
 
-  bestWPM.textContent = localStorage.getItem("bestWPM");
+  if (localStorage.getItem("bestWPM")) {
+    bestWPM.textContent = localStorage.getItem("bestWPM");
+  }
 
   // console.log(state);
 });
@@ -482,8 +484,6 @@ hiddenInput.addEventListener("input", (e) => {
     e.target.value = "";
   }
 });
-
-
 
 inputField.addEventListener("click", focusHiddenInput);
 inputField.addEventListener("touchend", focusHiddenInput);
