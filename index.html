@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
   </head>
   <body class="font-[Sora] relative bg-neutral-900 relative min-h-screen flex flex-col">
@@ -154,12 +155,15 @@
 
           <div class="input-wrapper relative flex-1 min-h-0">
             <input type="text" id="hidden-input" autocomplete="off" autocapitalize="off" spellcheck="false" class="absolute w-0 h-0 pointer-events-none" />
-            <div id="input-field" class="overflow-y-auto transition-all h-full duration-200 md:text-4xl text-neutral-400 text-2xl outline-none leading-normal blur-sm caret-transparent"></div>
+            <div
+              id="input-field"
+              class="no-scrollbar overflow-y-auto transition-all h-full duration-200 md:text-4xl text-neutral-400 text-2xl outline-none leading-normal blur-sm caret-transparent pb-[100px]"
+            ></div>
           </div>
         </div>
 
         <!-- Restart section -->
-        <div class="container transition-all mx-auto px-4 hidden" id="restart-container">
+        <div class="container fixed bottom-0 transition-all mx-auto px-4 hidden" id="restart-container">
           <div class="restart-wrapper bg-neutral-900 flex justify-center py-4 lg:py-8 border-t border-neutral-400/50">
             <button id="restart-btn" class="text-gray-50 gap-3 hover:bg-neutral-500 bg-neutral-800 rounded-lg p-3 flex cursor-pointer" name="restart">
               <span>Restart Test</span>

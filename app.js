@@ -136,28 +136,28 @@ function Cursor() {
   }
 }
 
-function scrollToCursor() {
-  const container = document.querySelector(".input-wrapper"); // your scrollable parent
-  const spans = inputField.querySelectorAll("span");
-  const currentSpan = spans[state.currentPosition] || spans[state.currentPosition - 1];
+// function scrollToCursor() {
+//   const container = document.querySelector(".input-wrapper"); // your scrollable parent
+//   const spans = inputField.querySelectorAll("span");
+//   const currentSpan = spans[state.currentPosition] || spans[state.currentPosition - 1];
 
-  if (!currentSpan) return;
+//   if (!currentSpan) return;
 
-  const containerRect = container.getBoundingClientRect();
-  const spanRect = currentSpan.getBoundingClientRect();
-  console.log(containerRect);
-  console.log(spanRect);
+//   const containerRect = container.getBoundingClientRect();
+//   const spanRect = currentSpan.getBoundingClientRect();
+//   console.log(containerRect);
+//   console.log(spanRect);
 
-  // Only scroll if the char is NOT fully visible (with a small buffer)
-  const buffer = 60; // px from bottom/top before we scroll
-  if (spanRect.bottom > containerRect.bottom - buffer || spanRect.top < containerRect.top + buffer) {
-    currentSpan.scrollIntoView({
-      block: "center", // or "nearest" if you prefer minimal movement
-      inline: "nearest",
-      behavior: "auto", // ← "auto" or "instant" = no animation = ZERO flicker
-    });
-  }
-}
+//   // Only scroll if the char is NOT fully visible (with a small buffer)
+//   const buffer = 60; // px from bottom/top before we scroll
+//   if (spanRect.bottom > containerRect.bottom - buffer || spanRect.top < containerRect.top + buffer) {
+//     currentSpan.scrollIntoView({
+//       block: "nearest", // or "nearest" if you prefer minimal movement
+//       inline: "nearest",
+//       behavior: "auto", // ← "auto" or "instant" = no animation = ZERO flicker
+//     });
+//   }
+// }
 
 function displayText(text) {
   inputField.innerHTML = "";
@@ -217,7 +217,10 @@ function resetGame() {
   time.classList.add("md:text-neutral-50", "text-yellow-300");
 
   Cursor();
-  hiddenInput.focus();
+
+  if (state.isRunning) {
+    focusHiddenInput()
+  }
   // hiddenInput.disabled = false;
 
   showInput();
@@ -354,7 +357,7 @@ function handleTyping(key) {
     }
 
     Cursor();
-    scrollToCursor();
+    // scrollToCursor();
   }
 
   state.currentPosition++;
@@ -465,12 +468,8 @@ document.querySelector("#start-btn").addEventListener("click", (e) => {
   blurOverlay.classList.add("hidden");
 
   showInput();
-  hiddenInput.focus();
+  focusHiddenInput()
 });
-
-// inputField.addEventListener("keydown", (e) => {
-//   handleTyping(e);
-// });
 
 restartBtn.forEach((btn) => {
   btn.addEventListener("click", () => {
