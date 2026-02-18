@@ -293,7 +293,6 @@ function endGame() {
   inputRestart.classList.add("hidden");
 
   hiddenInput.blur();
-  // hiddenInput.disabled = true;
   showResults();
 }
 
@@ -320,7 +319,6 @@ function startTimer(mode) {
 }
 
 function handleTyping(key) {
-  // e.preventDefault();
 
   if (!state.isRunning && !blurOverlay.classList.contains("hidden")) {
     return;
@@ -330,9 +328,6 @@ function handleTyping(key) {
     startGame();
   }
 
-  // if (e.key == "Enter" || e.key === "Backspace") return;
-
-  // if (e.key.length !== 1) return;
 
   const typedChar = key;
   const expectedChar = state.currentText[state.currentPosition];
@@ -357,7 +352,6 @@ function handleTyping(key) {
     }
 
     Cursor();
-    // scrollToCursor();
   }
 
   state.currentPosition++;
@@ -425,6 +419,7 @@ mobileNav.addEventListener("click", (e) => {
       loadDeskNav(deskDiffNav, selectedVal);
       resetGame();
       closeDropdown(difficultyBtn, difficultyDD, 400);
+      focusHiddenInput()
     }
   }
 
@@ -474,6 +469,7 @@ document.querySelector("#start-btn").addEventListener("click", (e) => {
 restartBtn.forEach((btn) => {
   btn.addEventListener("click", () => {
     resetGame();
+    focusHiddenInput()
   });
 });
 
