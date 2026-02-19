@@ -52,13 +52,7 @@ const imgWrapper = document.querySelector("#img-wrapper");
 const headText = document.querySelector("#text-1");
 const subText = document.querySelector("#text-2");
 const btnText = document.querySelector("#btn-text");
-
-inputField.style.cursor = "text";
 // ===== UTILITY FUNCTIONS =====
-
-function setState(property, value) {
-  state[property] = value.toLocaleLowerCase();
-}
 
 function toggleDropDown(button) {
   button.querySelector("img").classList.toggle("-rotate-90");
@@ -66,9 +60,10 @@ function toggleDropDown(button) {
   DD.classList.toggle("hidden");
 }
 
-function closeDropdown(button, DropDown, timeOut = 0) {
+function closeDropdown(button, timeOut = 0) {
   setTimeout(() => {
     button.querySelector("img").classList.add("-rotate-90");
+    const DropDown = button.closest("div").querySelector(".drop-down");
     DropDown.classList.add("hidden");
   }, timeOut);
 }
@@ -111,6 +106,14 @@ async function loadData() {
   }
 }
 
+function loadMode() {
+  if (state.mode === "timed") {
+    time.textContent = "00:60";
+  } else {
+    time.textContent = "00:00";
+  }
+}
+
 // ===== GAME LOGIC =====
 
 function displayRandomText(difficulty) {
@@ -130,8 +133,8 @@ function Cursor() {
     return;
   }
 
-  spans[state.currentPosition].classList.remove("bg-neutral-500");
   if (spans[state.currentPosition + 1]) {
+    spans[state.currentPosition].classList.remove("bg-neutral-500");
     spans[state.currentPosition + 1].classList.add("bg-neutral-500");
   }
 }
@@ -171,14 +174,6 @@ function displayText(text) {
   Cursor();
 }
 
-function loadMode() {
-  if (state.mode === "timed") {
-    time.textContent = "00:60";
-  } else {
-    time.textContent = "00:00";
-  }
-}
-
 function startGame() {
   if (state.isRunning) return;
 
@@ -188,7 +183,7 @@ function startGame() {
   state.currentPosition = 0;
   state.correctChars = 0;
   state.incorrectChars = 0;
-  state.elapsedTime = 0;
+  state.timeLeft = state.mode === "timed" ? 60 : 0;
 
   startTimer(state.mode);
 
@@ -206,7 +201,7 @@ function resetGame() {
   state.currentPosition = 0;
   state.correctChars = 0;
   state.incorrectChars = 0;
-  state.elapsedTime = 0;
+  state.timeLeft = state.mode === "timed" ? 60 : 0;
 
   displayRandomText(state.difficulty);
 
@@ -219,9 +214,8 @@ function resetGame() {
   Cursor();
 
   if (state.isRunning) {
-    focusHiddenInput()
+    focusHiddenInput();
   }
-  // hiddenInput.disabled = false;
 
   showInput();
 }
@@ -297,7 +291,7 @@ function endGame() {
 }
 
 function startTimer(mode) {
-  state.timeLeft = mode === "timed" ? 60 : 0;
+
 
   state.timer = setInterval(() => {
     mode === "timed" ? state.timeLeft-- : state.timeLeft++;
@@ -319,7 +313,6 @@ function startTimer(mode) {
 }
 
 function handleTyping(key) {
-
   if (!state.isRunning && !blurOverlay.classList.contains("hidden")) {
     return;
   }
@@ -327,7 +320,6 @@ function handleTyping(key) {
   if (!state.isRunning && blurOverlay.classList.contains("hidden")) {
     startGame();
   }
-
 
   const typedChar = key;
   const expectedChar = state.currentText[state.currentPosition];
@@ -402,11 +394,11 @@ mobileNav.querySelectorAll("button").forEach((button) => {
 
 document.addEventListener("click", (e) => {
   if (!difficultyBtn.contains(e.target) && !difficultyDD.contains(e.target)) {
-    closeDropdown(difficultyBtn, difficultyDD);
+    closeDropdown(difficultyBtn);
   }
 
   if (!modeBtn.contains(e.target) && !modeDD.contains(e.target)) {
-    closeDropdown(modeBtn, modeDD);
+    closeDropdown(modeBtn);
   }
 });
 
@@ -414,12 +406,12 @@ mobileNav.addEventListener("click", (e) => {
   if (difficultyDD.contains(e.target)) {
     if (e.target.type === "radio") {
       const selectedVal = getSelectedRadio(difficultyBtns).value;
-      setState("difficulty", selectedVal);
+      state.difficulty = selectedVal.toLowerCase();
       loadMobNav(difficultyBtn, selectedVal);
       loadDeskNav(deskDiffNav, selectedVal);
       resetGame();
-      closeDropdown(difficultyBtn, difficultyDD, 400);
-      focusHiddenInput()
+      closeDropdown(difficultyBtn, 400);
+      focusHiddenInput();
     }
   }
 
@@ -428,9 +420,10 @@ mobileNav.addEventListener("click", (e) => {
       const selectedVal = getSelectedRadio(modeBtns).value;
       loadMobNav(modeBtn, selectedVal);
       loadDeskNav(deskModeNav, selectedVal);
-      setState("mode", selectedVal);
+      state.mode = selectedVal.toLowerCase();
       resetGame();
-      closeDropdown(modeBtn, modeDD, 400);
+      closeDropdown(modeBtn, 400);
+      focusHiddenInput();
     }
   }
 });
@@ -441,12 +434,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   loadMobNav(difficultyBtn, difficulty);
   loadMobNav(modeBtn, mode);
-
   loadDeskNav(deskDiffNav, difficulty);
   loadDeskNav(deskModeNav, mode);
 
-  setState("difficulty", difficulty);
-  setState("mode", mode);
+  state.difficulty = difficulty.toLowerCase();
+  state.mode = mode.toLowerCase();
 
   await loadData();
   displayRandomText(state.difficulty);
@@ -463,13 +455,13 @@ document.querySelector("#start-btn").addEventListener("click", (e) => {
   blurOverlay.classList.add("hidden");
 
   showInput();
-  focusHiddenInput()
+  focusHiddenInput();
 });
 
 restartBtn.forEach((btn) => {
   btn.addEventListener("click", () => {
     resetGame();
-    focusHiddenInput()
+    focusHiddenInput();
   });
 });
 
