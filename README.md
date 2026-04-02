@@ -28,7 +28,8 @@ Users should be able to:
 
 ### Screenshot
 
-(placeholder – I’ll add one soon)
+<img width="1280" height="858" alt="image" src="https://github.com/user-attachments/assets/9f51df40-f861-473e-985d-2ecb52f609c9" />
+
 
 ### Links
 
