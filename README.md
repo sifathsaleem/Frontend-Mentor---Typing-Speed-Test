@@ -31,7 +31,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: https://typing-speed-checkerr.netlify.app/
+- Live Site URL: https://typing-speed-checker-slm.netlify.app/
 
 
 ## My process
